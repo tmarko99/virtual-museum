@@ -1,0 +1,16 @@
+.card{
+    background-color: rgba(0, 0, 0, 0.048);
+}
+
+.form-group{
+    text-align: center;
+}
+
+form{
+    margin-bottom: 1em;
+}
+
+form > input{
+    width: 30%;
+    margin-right: 1em;
+}

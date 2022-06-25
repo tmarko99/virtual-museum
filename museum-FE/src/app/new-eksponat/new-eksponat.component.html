@@ -1,0 +1,77 @@
+<div class="register-section mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header" style="text-align: center">
+          <h4>Dodaj eksponat</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="newEksponatForm" (ngSubmit)="addEksponat()">
+            <div class="form-group row">
+              <label for="naziv" class="col-md-4 col-form-label text-md-right">Naziv</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'naziv'" id="naziv" class="form-control" name="naziv" required
+                  autofocus>
+                <div class="alert alert-danger mt-2" *ngIf="!newEksponatForm.get('naziv').valid
+                                    && newEksponatForm.get('naziv').touched">
+                  Naziv mora imati najmanje 5 karaktera
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="opis" class="col-md-4 col-form-label text-md-right">Opis</label>
+              <div class="col-md-6">
+                <textarea type="text" [formControlName]="'opis'" id="opis" rows="4" cols="40" name="opis"></textarea>
+                <div class="alert alert-danger mt-2"
+                  *ngIf="!newEksponatForm.get('opis').valid && newEksponatForm.get('opis').touched">
+                  Opis mora imati bar 10 karaktera
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="photoUrl" class="col-md-4 col-form-label text-md-right">Photo URL</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'photoUrl'" id="photoUrl" class="form-control" name="photoUrl"
+                  required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="cenaObilaska" class="col-md-4 col-form-label text-md-right">Cena obilaska</label>
+              <div class="col-md-6">
+                <input type="number" [formControlName]="'cenaObilaska'" id="cenaObilaska" class="form-control"
+                  name="cenaObilaska" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="vremeObilaska" class="col-md-4 col-form-label text-md-right">Vreme obilaska</label>
+              <div class="col-md-6">
+                <input type="datetime-local" [formControlName]="'vremeObilaska'" id="vremeObilaska" class="form-control"
+                  name="vremeObilaska" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="zemljaPorekla" class="col-md-4 col-form-label text-md-right">Zemlja porekla</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'zemljaPorekla'" id="zemljaPorekla" class="form-control"
+                  name="zemljaPorekla" required>
+              </div>
+            </div>
+
+            <div class="col-md-6 offset-md-4">
+              <button type="submit" class="btn btn-primary">
+                Dodaj eksponat
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

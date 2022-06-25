@@ -1,0 +1,43 @@
+<div class="detalji">
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <img src="{{ eksponat.photoUrl }}" class="card-img" alt="{{ eksponat.naziv }}">
+      </div>
+      <div class="col-md-6 d-flex align-items-center">
+        <div class="card-body">
+          <h1 class="card-title text">{{ eksponat.naziv }}</h1>
+          <p class="card-text">{{ eksponat.opis }}</p>
+          <h3 class="m-0">Cena: {{eksponat.cenaObilaska | currency: 'EUR'}}</h3>
+          <h3 class="card-text">Zemlja porekla: {{eksponat.zemljaPorekla}}</h3>
+          <p class="card-text">Datum i vreme obilaska: {{eksponat.vremeObilaska | date:'medium'}}</p>
+          <p>Ocena:</p>
+          <star-rating fxFlex
+                    value="{{prosecnaOcena || 0}}"
+                    totalstars="5"
+                    checkedcolor="#ffd740"
+                    uncheckedcolor="gray"
+                    size="35px"
+                    ></star-rating>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="recenzije">
+  <div class="card" *ngFor="let recenzija of eksponat?.recenzije">
+    <div class="card-header">
+      UserName: {{ recenzija.userIme}}
+    </div>
+    <div class="card-body">
+      <p>Recenzija: </p>
+      <p class="card-title">{{ recenzija.komentar }}</p>
+      <p class="card-text">Ocena: {{ recenzija.ocena }}</p>
+      <button *ngIf="isLoggedIn" (click)="obrisiRecenziju(recenzija.id)" class="btn btn-danger float-right">Obrisi recenziju</button>
+    </div>
+</div>
+</div>
+<hr>
+
+<app-recenzija *ngIf="isLoggedIn" [id]="id" (recenzijeUpdated)="onRecenzijeUpdated()"></app-recenzija>

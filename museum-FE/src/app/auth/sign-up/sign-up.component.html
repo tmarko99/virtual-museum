@@ -1,0 +1,84 @@
+<div class="register-section mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+                <div class="card-header" style="text-align: center">
+                    <h4>Registracija</h4>
+                </div>
+                    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                        <div class="form-group row mt-3">
+                            <label for="ime" class="col-md-4 col-form-label text-center">Ime</label>
+                            <div class="col-md-6">
+                                <input type="text" [formControlName]="'ime'" id="ime" class="form-control" name="ime" required autofocus>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('ime', 'required')">
+                              Ime je obavezno polje
+                             </p>
+                             <p class="alert alert-danger text-center" *ngIf="hasErrors('ime', 'minlength')">
+                              Ime mora imati bar {{ signupForm.get('ime').errors.minlength.requiredLength }} karaktera
+                            </p>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="prezime" class="col-md-4 col-form-label text-center">Prezime</label>
+                            <div class="col-md-6">
+                                <input type="text" [formControlName]="'prezime'" id="prezime" class="form-control" name="prezime" required autofocus>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('prezime', 'required')">
+                              Prezime je obavezno polje
+                            </p>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telefon" class="col-md-4 col-form-label text-center">Telefon</label>
+                            <div class="col-md-6">
+                                <input type="text" [formControlName]="'telefon'" id="telefon" class="form-control" name="telefon" required autofocus>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('telefon', 'required')">
+                              Telefon je obavezno polje
+                            </p>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="adresa" class="col-md-4 col-form-label text-center">Adresa</label>
+                            <div class="col-md-6">
+                                <input type="text" [formControlName]="'adresa'" id="adresa" class="form-control" name="adresa" required autofocus>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('adresa', 'required')">
+                              Adresa je obavezno polje
+                            </p>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-center">Email</label>
+                            <div class="col-md-6">
+                                <input type="email" [formControlName]="'email'" id="email" class="form-control" name="email" required autofocus>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('email', 'required')">
+                              Email je obavezno polje
+                            </p>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('email', 'email')">
+                              Email mora biti u ispravnom formatu
+                            </p>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-center">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" required>
+                            </div>
+                            <p class="alert alert-danger text-center mt-2" *ngIf="hasErrors('password', 'required')">
+                              Sifra je obavezno polje
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 offset-md-4 d-flex align-items-center">
+                            <button class="btn btn-primary sign-up" type="submit">Registracija</button>
+                            <div style="padding-left: 15px">Vec imate nalog? <a routerLink="/login">Uloguj se</a></div>
+                        </div>
+                    </form>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

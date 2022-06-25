@@ -1,0 +1,37 @@
+#main-container{
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row img{
+    height: 100%;
+}
+
+.pretraga > div{
+    margin: 2em 0;
+}
+
+.pretraga input{
+    width: 100%;
+}
+
+.paginacija p{
+    padding-right: 1em;
+}
+.paginacija{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+mat-form-field {
+    width: 100%;
+}
+
+button{
+    margin-right: 1em;
+}

@@ -1,0 +1,74 @@
+<div class="container" id="main-container">
+
+  <div class="pretraga">
+    <div>
+      Pretraga:
+      <input type="text" ngModel matInput placeholder="Search" name="search" search #searchInput="ngModel"
+        [(ngModel)]="searchValue" (keyup)="search()">
+    </div>
+
+    <div class="check">
+      <p><b>Price range:</b></p>
+      <ngx-slider [(value)]="minValuePrice" (valueChange)="minValuePrice = $event" [(highValue)]="maxValuePrice"
+        (highValueChange)="maxValuePrice = $event" ngModel [options]="optionsPrice" (ngModelChange)="searchByPrice()">
+      </ngx-slider>
+
+      <div fxFlex fxFill fxLayout="column wrap" class="mt-3">
+        <p><b>Country of origin:</b></p>
+        <mat-form-field appearance="fill">
+          <mat-label>Country of origin</mat-label>
+          <mat-select [(ngModel)]="countryValue" (selectionChange)="search()">
+            <mat-option value="">Any origin</mat-option>
+            <mat-option *ngFor="let zemlja of zemlje" [value]="zemlja">
+              {{zemlja}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mt-4">
+    <div class="d-flex flex-wrap justify-content-evenly">
+    <ng-container *ngIf="eksponati.length > 0; else noResultsBlock">
+      <div *ngFor="let eksponat of eksponati | paginate: {
+        itemsPerPage: pageSize,
+        currentPage: currentPage,
+        totalItems: totalElements,
+        totalPages: totalPages }">
+          <div class="card mb-2 text-white bg-dark" style="width: 18rem;">
+            <img src="{{eksponat.photoUrl}}" class="card-img-top" alt="{{eksponat.naziv}}" style="height: 250px;">
+            <div class="card-body">
+              <h5 class="card-title">{{eksponat.naziv}}</h5>
+              <p class="m-0">{{eksponat.cenaObilaska | currency: 'EUR'}}</p>
+              <p class="card-text">{{eksponat.zemljaPorekla}}</p>
+              <p class="card-text">{{eksponat.vremeObilaska | date:'medium'}}</p>
+              <button class="btn btn-secondary" [routerLink]="['/eksponat', eksponat.id]">Detalji</button>
+              <button class="btn btn-primary" *ngIf="!isAdmin" (click)="kreirajObilazak(eksponat.id)">Zakazi
+                obilazak</button>
+              <button class="btn btn-danger" *ngIf="isAdmin" (click)="obrisiEksponat(eksponat.id)">Obrisi Eksponat</button>
+            </div>
+        </div>
+  </div>
+    </ng-container>
+  </div>
+
+      <div *ngIf="eksponati.length > 0" class="paginacija mt-2 pt-3">
+        <div>
+          <pagination-controls (pageChange)="handlePageChange($event)" responsive="true"></pagination-controls>
+        </div>
+        <div class="d-flex">
+          <p>Items per Page:</p>
+          <select (change)="handlePageSizeChange($event)" style="height: 100%;">
+            <option>10</option>
+            <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+          </select>
+        </div>
+      </div>
+  </div>
+
+</div>
+<ng-template #noResultsBlock>
+  <h1 class="text-center">Nema rezultata</h1>
+</ng-template>

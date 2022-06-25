@@ -1,0 +1,22 @@
+.detalji{
+    width: 80%;
+    margin: 2em auto;
+}
+
+.detalji img{
+    height: 400px;
+}
+.detalji .card{
+    height: 400px;
+}
+
+.row{
+    height: 100%;
+}
+
+.recenzije{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    margin: 0 2em;
+}

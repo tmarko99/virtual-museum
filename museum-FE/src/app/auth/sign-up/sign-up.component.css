@@ -1,0 +1,7 @@
+form > div:not(:last-child){
+    margin-bottom: 2em;
+}
+
+a{
+    text-decoration: none;
+}

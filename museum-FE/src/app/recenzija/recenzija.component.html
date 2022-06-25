@@ -1,0 +1,9 @@
+<div class="post-recenzija">
+    <form [formGroup]="recenzijaForm" (ngSubmit)="postRecenzija()">
+      <div class="form-group">
+        <textarea class="form-control mb-3" [formControlName]="'komentar'" placeholder="Your Thoughts?"></textarea>
+        <input class="mb-3" min="1" type="number" placeholder="Oceni" [formControlName]="'ocena'">
+      </div>
+      <button type="submit" class="btn btn-primary">Ostavi recenziju</button>
+    </form>
+</div>
